@@ -676,6 +676,35 @@ class API {
     }
 
     /**
+     * Notify external application (if API is enabled) that the mouse has moved inside the iframe.
+     *
+     * @param {MouseEvent} event - The mousemove event.
+     * @returns {void}
+     */
+    notifyMouseMoved(event: MouseEvent) {
+        const {
+            clientX,
+            clientY,
+            screenX,
+            screenY,
+            pageX,
+            pageY
+        } = event;
+
+        this._sendEvent({
+            name: 'mouse-moved',
+            coordinates: {
+                clientX,
+                clientY,
+                screenX,
+                screenY,
+                pageX,
+                pageY
+            }
+        });
+    }
+
+    /**
      * Notify external application that the video quality setting has changed.
      *
      * @param {number} videoQuality - The video quality. The number represents the maximum height of the video streams.
